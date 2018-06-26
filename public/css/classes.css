@@ -1,0 +1,5 @@
+.bg-indigo-lighter { background: #b2b7ff }
+.btn-indigo {background: #b2b7ff;  border-color: #99a0ff; font-weight: 600}
+.btn-indigo:hover {background: #6574cd; border-color: #5263c7}
+.mb-24 { margin-bottom: 24px }
+.meta { font-weight: 300; font-style: italic; font-family: Lora,'Times New Roman',serif;}
