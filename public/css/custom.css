@@ -1,4 +1,2 @@
-.btn:focus { box-shadow: 0 0 0 0.2rem rgba(255, 24,230,.5) ;}
-/*.btn.active.focus, .btn.active:focus, .btn.focus, .btn:active.focus, .btn:active:focus, .btn:focus {*/
-    outline: 0;
-}
+.btn-indigo:focus { box-shadow: 0 0 0 0.2rem   rgba(178, 183, 255, .5) ;}
+.card { border-radius: 0 }

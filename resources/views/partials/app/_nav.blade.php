@@ -1,15 +1,31 @@
 <nav class="navbar page-header">
     <div class="container-fluid">
         <a class="navbar-brand font-lg" href="#">
-            LaraMedic
+            {{ config('app.name', 'Laravel') }}
         </a>
 
+        <ul class="navbar-nav mr-auto">
+            @admin(Auth::user())
+                <li class="nav-item p-2">
+                    <a class="nav-link" href="{{ route('home') }}">
+                        Admin Dashboard
+                    </a>
+                </li>
+            @endadmin
+        </ul>
+
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item dropdown">
+            <li class="nav-item p-2">
+                <a href="{{ route('about') }}">About</a>
+            </li>
+            <li class="nav-item p-2">
+                <a href="{{ route('contact') }}">Contact</a>
+            </li>
+            <li class="nav-item dropdown ml-5">
                 @auth
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <img src="{{ asset('vendor/carbon-master/imgs/avatar-1.png') }}" class="avatar avatar-sm" alt="logo">
-                        <span class="small ml-1 d-md-down-none">John Smith</span>
+                        <span class="small ml-1 d-md-down-none">@auth{{ Auth::user()->name }}@endauth</span>
                     </a>
                 @endauth
 
@@ -31,8 +47,8 @@
                     </a>
 
                     @guest
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">Login</a>
+                        <li class="nav-item  border-2 border-solid border-indigo-light">
+                            <a class="nav-link p-2" href="{{ route('login') }}">Login</a>
                         </li>
                     @else
 

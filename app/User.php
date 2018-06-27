@@ -2,12 +2,14 @@
 
 namespace App;
 
-use Illuminate\Notifications\Notifiable;
+use App\Traits\User\HasAccount;
+use App\Traits\User\HasRoles;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, HasRoles, HasAccount;
 
     /**
      * The attributes that are mass assignable.
@@ -28,6 +30,15 @@ class User extends Authenticatable
     ];
 
     /**
+     * The attributes that should be casted to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'is_verified' => 'boolean',
+    ];
+
+    /**
      * Set the user's password.
      *
      * @param  string  $value
@@ -36,15 +47,5 @@ class User extends Authenticatable
     public function setPasswordAttribute($value)
     {
         $this->attributes['password'] = bcrypt($value);
-    }
-
-    /**
-     * Get the roles that belong to the user.
-     *
-     * @return  \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-    public function roles()
-    {
-        return $this->belongsToMany(Role::class);
     }
 }
