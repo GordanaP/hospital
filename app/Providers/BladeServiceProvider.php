@@ -19,6 +19,9 @@ class BladeServiceProvider extends ServiceProvider
         {
             return Auth::check() ? $user->is_admin : '';
         });
+
+        Blade::component('components.admin.content', 'admcontent');
+        Blade::component('components.admin.banner', 'admbanner');
     }
 
     /**

@@ -13,8 +13,7 @@
 <!-- Custom fonts -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
 <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,300,400,600,700,800' rel='stylesheet' type='text/css'>
-{{-- <link rel="dns-prefetch" href="https://fonts.gstatic.com"> --}}
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,300,400,600,700,800|Roboto:400,400i,500i,700,700i' rel='stylesheet' type='text/css'>
 <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
 
 <!-- Custom styles-->
@@ -23,7 +22,9 @@
 <link rel="stylesheet" href="{{ asset('vendor/carbon-master/css/styles.css') }}">
 
 <!-- Custom styles for this template-->
+<link href="{{ asset('css/default.css') }}" rel="stylesheet">
 <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
+<link href="{{ asset('css/admin.css') }}" rel="stylesheet">
 <link href="{{ asset('css/classes.css') }}" rel="stylesheet">
 
 @yield('links')

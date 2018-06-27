@@ -14,3 +14,18 @@ Route::namespace('Page')->group(function(){
  * Auth
  */
 Auth::routes();
+
+
+/**
+ * Users
+ */
+Route::prefix('admin')->namespace('User')->name('admin.')->group(function(){
+    /**
+     * Account
+     */
+    // Route::get('/accounts/list', 'AccountController@list')->name('accounts.list');
+    Route::resource('/accounts', 'AccountController', [
+        'parameters' => ['accounts' => 'user'],
+        'only' => ['index','store', 'show', 'update', 'destroy']
+    ]);
+});

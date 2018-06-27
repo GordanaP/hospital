@@ -3,14 +3,20 @@
         <li class="nav-title">Navigation</li>
 
         <li class="nav-item">
-            <a href="index.html" class="nav-link active">
+            <a href="{{ route('home') }}" class="nav-link active">
                 <i class="icon icon-speedometer"></i> Dashboard
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a href="{{ route('admin.accounts.index') }}" class="nav-link">
+                <i class="icon icon-people"></i> Users
             </a>
         </li>
 
         <li class="nav-item nav-dropdown">
             <a href="#" class="nav-link nav-dropdown-toggle">
-                <i class="icon icon-target"></i> Layouts <i class="fa fa-caret-left"></i>
+                <i class="icon icon-people"></i> Profiles <i class="fa fa-caret-left"></i>
             </a>
 
             <ul class="nav-dropdown-items">

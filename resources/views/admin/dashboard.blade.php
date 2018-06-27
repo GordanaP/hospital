@@ -4,7 +4,7 @@
 
 @section('content')
 
-    @component('components.admin.dashboard')
+    @admcontent
 
         @slot('banners')
             @include('admin.partials._banners')
@@ -14,6 +14,6 @@
             @include('admin.partials._chart')
         @endslot
 
-    @endcomponent
+    @endadmcontent
 
 @endsection

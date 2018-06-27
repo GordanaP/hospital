@@ -13,7 +13,9 @@
         <div class="main-container">
 
             <div class="sidebar">
-                @include('partials.admin._sidebar')
+                @section('sidebar')
+                    @include('partials.admin._sidebar')
+                @show
             </div>
 
             <div class="content">
