@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Http\Controllers\Controller;
+use App\Role;
 use App\User;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class AccountController extends Controller
 {
@@ -16,13 +17,14 @@ class AccountController extends Controller
     public function index()
     {
         $users = User::all();
+        $roles = Role::all();
 
         if (request()->ajax()) {
 
             return [ 'data' => $users->load('roles') ];
         }
 
-        return view('users.index', compact('users'));
+        return view('users.index', compact('users', 'roles'));
     }
 
     /**
@@ -43,7 +45,9 @@ class AccountController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        User::createAccount($request);
+
+        return message('New account has been created');
     }
 
     /**

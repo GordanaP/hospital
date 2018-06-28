@@ -14,4 +14,23 @@ trait HasAccount
     {
         return $this->verified;
     }
+
+    /**
+     * Create the user account.
+     *
+     * @param  array $data
+     * @return App\User
+     */
+    public static function createAccount($data)
+    {
+        $user = new static;
+
+        $user->name = $data['name'];
+        $user->email = $data['email'];
+        $user->password = $data['password'];
+
+        $user->save();
+
+        return $user;
+    }
 }

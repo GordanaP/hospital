@@ -18,6 +18,7 @@
 
 <!-- Custom styles-->
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.12.3/sweetalert2.min.css">
 <link rel="stylesheet" href="{{ asset('vendor/carbon-master/vendor/simple-line-icons/css/simple-line-icons.css') }}">
 <link rel="stylesheet" href="{{ asset('vendor/carbon-master/css/styles.css') }}">
 

@@ -30,24 +30,69 @@
 
     <script>
 
-        var accountsUrl = "{{ route('admin.accounts.index') }}"
-
-
         // Initialize select.2
         $('select.role_id')
         .select2({
             placeholder: "Select role(s)",
             width: "100%",
-            allowClear: true
+            // allowClear: true
         });
 
         // Datatable
         @include('users.tables._datatable')
 
-        $(document).on('click', '#createAccount', function(){
-            $('#createAccountModal').modal('show')
+        // ACCOUNT
+        var accountsUrl = "{{ route('admin.accounts.index') }}"
+        var accountFields = ['role_id', 'title', 'first_name', 'last_name', 'email', 'password']
+
+        // Create account
+        var createAccountModal = $('#createAccountModal')
+        var focused = $('#first_name')
+        var checked = $('#auto_password')
+        var hidden = $("#password")
+        hidden.hide()
+
+        createAccountModal.setAutofocus(focused)
+        createAccountModal.emptyModal(accountFields, checked, hidden)
+
+        // Create account
+        $(document).on('click', '#createAccount', function() {
+
+            createAccountModal.modal('show')
+
+            toggleHiddenFieldWithCheckbox(checked, hidden);
+
         })
 
+        // Store account
+        $(document).on('click', '#storeAccount', function() {
+
+            var firstName = $('#first_name').val()
+            var lastName = $('#last_name').val()
+            var name = firstName.charAt(0) + lastName
+            var email = $('#email').val()
+            var password = generatePassword(checked);
+
+            var data = {
+                name: name,
+                email : email,
+                password: password
+            }
+
+            $.ajax({
+                url: accountsUrl,
+                type: "POST",
+                data: data,
+                success: function(response) {
+
+                    datatable.ajax.reload();
+                    successResponse(createAccountModal, response.message);
+                },
+                error: function(response) {
+                    errorResponse(createAccountModal, jsonErrors(response));
+                }
+            });
+        });
 
     </script>
 @endsection

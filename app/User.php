@@ -3,13 +3,14 @@
 namespace App;
 
 use App\Traits\User\HasAccount;
+use App\Traits\User\HasAttributes;
 use App\Traits\User\HasRoles;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    use Notifiable, HasRoles, HasAccount;
+    use Notifiable, HasRoles, HasAccount, HasAttributes;
 
     /**
      * The attributes that are mass assignable.
@@ -37,15 +38,4 @@ class User extends Authenticatable
     protected $casts = [
         'is_verified' => 'boolean',
     ];
-
-    /**
-     * Set the user's password.
-     *
-     * @param  string  $value
-     * @return void
-     */
-    public function setPasswordAttribute($value)
-    {
-        $this->attributes['password'] = bcrypt($value);
-    }
 }
