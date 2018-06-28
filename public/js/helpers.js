@@ -84,12 +84,12 @@ function monthsNames()
  * @param {object} datatable
  * @return {void}
  */
-function datatableCounterColumn(table)
+function datatableIndexColumn(dataTable, originalTable)
 {
-    table.on('order.dt search.dt', function () {
-        table.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
-            x = i+1
-            cell.innerHTML = '<span>'+ x +'</span>';
-        } );
-    } ).draw();
+    dataTable.on( 'draw.dt', function () {
+        var PageInfo = originalTable.DataTable().page.info();
+        dataTable.column(0, { page: 'current' }).nodes().each( function (cell, i) {
+            cell.innerHTML = i + 1 + PageInfo.start;
+        });
+    });
 }

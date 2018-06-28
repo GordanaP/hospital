@@ -10,8 +10,6 @@
 
 @section('content')
 
-    {{-- <h1 class="font-medium text-4xl ml-3 mb-5" style="font-family: Roboto">Users</h1> --}}
-
     @admcontent
         @slot('card')
             @include('users.tables._htmltable')

@@ -3,6 +3,7 @@ var datatable = table.DataTable({
         "url": accountsUrl,
         "type": "GET"
     },
+    "pagingType": "full_numbers",
     "deferRender": true, // Increase the speed of the table loading
     "columns": [
         {
@@ -63,15 +64,16 @@ var datatable = table.DataTable({
         //     visible: false
         // },
     ],
-    "order": [1, 'asc'],
+    "order": [[1, 'asc']],
     responsive: true,
     columnDefs: [
         { responsivePriority: 1, targets: 0 },
         { responsivePriority: 2, targets: 1 },
         { responsivePriority: 3, targets: 2 }
-    ]
+    ],
 });
 
-datatableCounterColumn(datatable)
+// The first col counters the rows
+datatableIndexColumn(datatable, table)
 
 $("#accountsTable_length select, #accountsTable_filter input").addClass('admin-modal-input')

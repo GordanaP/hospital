@@ -14,6 +14,7 @@ class RoleUserTableSeeder extends Seeder
     public function run()
     {
         $admin = Role::whereName('admin')->first();
+        $superadmin = Role::whereName('superadmin')->first();
         $doctor = Role::whereName('doctor')->first();
         $patient = Role::whereName('patient')->first();
 
@@ -21,6 +22,7 @@ class RoleUserTableSeeder extends Seeder
         $patients = User::whereIn('id', [6,7])->get();
 
         User::first()->roles()->attach($admin);
+        User::find(2)->roles()->attach($superadmin);
 
         foreach ($doctors as $dr) {
 

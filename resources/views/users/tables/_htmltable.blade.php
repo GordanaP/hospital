@@ -1,9 +1,12 @@
 <div class="card-header p-3 flex justify-between align-center" id="datatableCardHeader">
-    <h1 class="font-medium text-4xl ml-3 mb-0" style="font-family: Roboto">Users</h1>
-    <button type="button" class="btn btn-lg btn-success pull-right" id="createAccount" style="font-size: 16px; letter-spacing: 10,5">
+
+    <h1 class="font-medium text-4xl ml-3 mb-0">Users</h1>
+
+    <button type="button" class="btn btn-lg btn-success pull-right mr-3" id="createAccount">
         <i class="icon icon-plus mr-1"></i>
-        <span style="font-size: 13px">Add User</span>
+        <span>Add User</span>
     </button>
+
 </div>
 
 <div class="card-body pt-4">
