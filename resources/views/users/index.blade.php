@@ -16,6 +16,9 @@
         @endslot
     @endadmcontent
 
+
+    @include('users.modals._create')
+
 @endsection
 
 
@@ -28,9 +31,23 @@
     <script>
 
         var accountsUrl = "{{ route('admin.accounts.index') }}"
-        var table = $('#accountsTable')
 
+
+        // Initialize select.2
+        $('select.role_id')
+        .select2({
+            placeholder: "Select role(s)",
+            width: "100%",
+            allowClear: true
+        });
+
+        // Datatable
         @include('users.tables._datatable')
+
+        $(document).on('click', '#createAccount', function(){
+            $('#createAccountModal').modal('show')
+        })
+
 
     </script>
 @endsection

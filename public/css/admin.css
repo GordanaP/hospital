@@ -50,28 +50,22 @@ td.sorting_1:hover { background: #d2d9df !important }*/
 /*
  * Select2
  */
-input.select2-search__field {width: 100% !important;}
-.select2-selection--multiple { border: 1px solid #ccd0d2 !important; }
+input.select2-search__field {width: 100% !important; font-size:12px !important; font-family: "Roboto" sans-serif !important;}
+.select2-selection__rendered, .select2-results__option.select2-results__message { margin-left: 8px !important;}
+.select2-selection--multiple { border-radius: 0 !important; border: 1px solid #ccd0d2 !important;}
 .select2-container--default.select2-container--focus .select2-selection--multiple {
-  /*border-color: #80bdff !important;
-  outline: 0;
-  -webkit-box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25)*/
-
-  border-color: #65e7be !important;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(126, 239, 104, 0.6) !important;
-  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(126, 239, 104, 0.6) !important;
+  border-radius: 0;
+  border-color: #CC1F1A !important;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
   outline: 0;
 }
-.form-group.has-success span.select2-selection--multiple {
-  border-color: #5cb85c !important;
-  box-shadow: none !important
-}
-.form-group.has-warning span.select2-selection--multiple {
-  border-color: #bf5329 !important;
-  box-shadow: none !important
-}
 
+.admin-modal-input:focus {
+    border-color: #CC1F1A !important;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) ;
+    outline: 0 ;
+}
 
 /* Card buttons */
 /*.box-shadow { box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); }
@@ -79,3 +73,22 @@ input.select2-search__field {width: 100% !important;}
 .btn-delete {background: none; border: none; color: #C25451}
 .btn-delete:hover {background: none; border: none; color: #c32232; font-weight: bold}
 */
+
+/* Change placeholder color */
+/**::-webkit-input-placeholder {
+    color: red!important;
+}
+*:-moz-placeholder {
+    FF 4-18
+    color: red!important;
+}
+*::-moz-placeholder {
+     //FF 19+
+    color: red!important;
+}
+*:-ms-input-placeholder {
+    IE 10+
+    color: red!important;
+}*/
+
+.bs-placeholder { color: lightgreen; }

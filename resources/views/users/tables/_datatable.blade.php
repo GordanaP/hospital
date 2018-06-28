@@ -1,3 +1,5 @@
+var table = $('#accountsTable')
+
 var datatable = table.DataTable({
     "ajax": {
         "url": accountsUrl,

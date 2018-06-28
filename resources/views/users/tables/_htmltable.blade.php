@@ -1,10 +1,14 @@
 <div class="card-header p-3 flex justify-between align-center" id="datatableCardHeader">
 
-    <h1 class="font-medium text-4xl ml-3 mb-0">Users</h1>
+    <h1 class="font-medium text-4xl ml-3 mb-0">Users
+        <small class="text-white bg-red-dark rounded-full pt-1 pb-1 pl-2 pr-2"">
+            {{ $users->count() }}
+        </small>
+    </h1>
 
     <button type="button" class="btn btn-lg btn-success pull-right mr-3" id="createAccount">
         <i class="icon icon-plus mr-1"></i>
-        <span>Add User</span>
+        Add User
     </button>
 
 </div>

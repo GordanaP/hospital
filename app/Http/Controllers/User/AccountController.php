@@ -22,7 +22,7 @@ class AccountController extends Controller
             return [ 'data' => $users->load('roles') ];
         }
 
-        return view('users.index');
+        return view('users.index', compact('users'));
     }
 
     /**
