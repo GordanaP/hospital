@@ -45,9 +45,9 @@
                             <select name="title" id="title" class="form-control title admin-modal-input">
                                 <option value="" >Select a title</option>
 
-                                {{-- @foreach (ProfileTitles::all() as $title => $description)
+                                @foreach (ProfileTitle::all() as $title => $description)
                                     <option value="{{ $title }}">{{ $description }}</option>
-                                @endforeach --}}
+                                @endforeach
                             </select>
 
                             <span class="invalid-feedback title"></span>

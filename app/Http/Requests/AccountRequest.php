@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\AlphaNumSpace;
+use App\Services\Utilities\ProfileTitle;
 use Illuminate\Foundation\Http\FormRequest;
 
 class AccountRequest extends FormRequest
@@ -27,12 +29,17 @@ class AccountRequest extends FormRequest
         {
             case 'POST':
                 return [
-                    'first_name' => 'required|string|alpha_num|max:30',
-                    'last_name' => 'required|string|alpha_num|max:30',
-                    'email' => 'required|string|email|max:100|unique:users,email',
-                    'password' => [
-                        'required', 'string', 'min:6',
+                    'first_name' => [
+                        'required','string', 'max:30',
+                        new AlphaNumSpace,
                     ],
+                    'last_name' => [
+                        'required','string','max:30',
+                        new AlphaNumSpace,
+                    ],
+                    'title' => 'required|in:'.ProfileTitle::getArray(),
+                    'email' => 'required|string|email|max:100|unique:users,email',
+                    'password' => 'required|string|min:6',
                 ];
                 break;
         }

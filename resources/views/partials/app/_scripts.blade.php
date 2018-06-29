@@ -8,6 +8,7 @@
 {{-- <script src="{{ asset('vendor/carbon-master/vendor/popper.js/popper.min.js') }}"></script> --}}
 <script src="{{ asset('vendor/carbon-master/vendor/chart.js/chart.min.js') }}"></script>
 <script src="{{ asset('vendor/carbon-master/js/carbon.js') }}"></script>
+<script src="{{ asset('vendor/carbon-master/js/demo.js') }}"></script>
 
 <script>
 

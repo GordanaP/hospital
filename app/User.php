@@ -38,4 +38,14 @@ class User extends Authenticatable
     protected $casts = [
         'is_verified' => 'boolean',
     ];
+
+    /**
+     * Get the profile that belongs to the user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function profile()
+    {
+        return $this->hasOne(Profile::class);
+    }
 }
