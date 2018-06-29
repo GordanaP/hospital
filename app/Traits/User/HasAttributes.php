@@ -12,7 +12,9 @@ trait HasAttributes
      */
     public function setNameAttribute($value)
     {
-        $this->attributes['name'] = strtolower($value);
+        $name = request()->first_name[0] . request()->last_name;
+
+        $this->attributes['name'] = strtolower($name);
     }
 
     /**

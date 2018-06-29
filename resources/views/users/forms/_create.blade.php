@@ -100,6 +100,8 @@
 
                 <!-- Password-->
                 <div class="row">
+
+                    <!-- Checkbox -->
                     <div class="col-md-6">
                         <label for="create_password" class="mb-0 font-medium">Password <sup><i class="fa fa-asterisk text-red-dark fa-required"></i></sup></label>
                         <div class="form-check mt-2">
@@ -110,8 +112,9 @@
                         </div>
                     </div>
 
+                    <!-- Hidden password -->
                     <div class="col-md-6">
-                        <div class="form-group mb-1">
+                        <div class="form-group" id="hidden_password">
                             <label for=""></label>
                             <input type="password" class="form-control password admin-modal-input" id="password" name="password" placeholder="Give password to the user" />
 
@@ -126,7 +129,7 @@
     </div>
 
     <div class="modal-footer">
-        <button type="button" class="btn bg-none" data-dismiss="modal" style="font-size: 16px">Close</button>
-        <button type="button" class="btn btn-success btn-account" id="storeAccount"  style="font-size: 16px">Save</button>
+        <button type="button" class="btn bg-none admin-modal-button" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-success btn-account admin-modal-button" id="storeAccount">Save</button>
     </div>
 </form>

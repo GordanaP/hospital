@@ -145,9 +145,8 @@ $.fn.emptyModal = function(fields, checked, hidden) {
 
         .find("select").val(null).trigger('change').end()
 
-        .find("input:checkbox, input:radio").prop("checked", false)
+        .find("input:checkbox, input:radio").prop("checked", false).end()
 
-    $(modal)
         .find(checked).prop('checked', true)
 
     hidden ? hidden.hide() : '';
@@ -177,9 +176,8 @@ $.fn.emptyModal = function(fields, checked, hidden) {
   */
  function toggleHiddenFieldWithCheckbox(checked, hidden)
  {
-     checked.change(function() {
+     checked.on('change', function() {
 
-         // this.checked ? hidden.hide().val('').end() : hidden.show()
          this.checked ? hidden.hide().val('') : hidden.show();
 
      });

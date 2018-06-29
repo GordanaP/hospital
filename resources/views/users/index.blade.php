@@ -35,7 +35,6 @@
         .select2({
             placeholder: "Select role(s)",
             width: "100%",
-            // allowClear: true
         });
 
         // Datatable
@@ -49,8 +48,7 @@
         var createAccountModal = $('#createAccountModal')
         var focused = $('#first_name')
         var checked = $('#auto_password')
-        var hidden = $("#password")
-        hidden.hide()
+        var hidden = $("#hidden_password").hide()
 
         createAccountModal.setAutofocus(focused)
         createAccountModal.emptyModal(accountFields, checked, hidden)
@@ -69,12 +67,12 @@
 
             var firstName = $('#first_name').val()
             var lastName = $('#last_name').val()
-            var name = firstName.charAt(0) + lastName
             var email = $('#email').val()
             var password = generatePassword(checked);
 
             var data = {
-                name: name,
+                first_name: firstName,
+                last_name: lastName,
                 email : email,
                 password: password
             }
