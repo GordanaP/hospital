@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AccountRequest;
+use App\Profile;
 use App\Role;
 use App\User;
 use Illuminate\Http\Request;
@@ -46,7 +47,7 @@ class AccountController extends Controller
      */
     public function store(AccountRequest $request)
     {
-        User::createAccount($request);
+        $user = User::createAccount($request);
 
         return message('New account has been created');
     }
@@ -59,7 +60,12 @@ class AccountController extends Controller
      */
     public function show(User $user)
     {
-        //
+        if(request()->ajax()) {
+
+            return response([
+                'user' => $user->load('profile','roles')
+            ]);
+        }
     }
 
     /**

@@ -1,3 +1,4 @@
+
 /**
  * Remove error on inserting the new value.
  *
@@ -118,17 +119,17 @@ $.fn.setAutofocus = function(field)
  * @param  {string} hidden_filed
  * @return {void}
  */
-$.fn.emptyModal = function(fields, checked, hidden) {
+ $.fn.emptyModal = function(fields, checked_field, hidden_field) {
 
     $(this).on("hidden.bs.modal", function() {
 
         // Remove form values
-        clearForm(this, checked, hidden);
+        clearForm(this, checked_field, hidden_field)
 
         // Remove server side errors
-        clearServerErrors(fields);
-    });
-}
+        clearServerErrors(fields)
+     });
+ }
 
 /**
  * Clear the form values.
@@ -138,19 +139,19 @@ $.fn.emptyModal = function(fields, checked, hidden) {
  * @param  {string} hidden-field
  * @return {void}
  */
- function clearForm(modal, checked=null, hidden=null)
- {
-    $(modal)
-        .find('form').trigger('reset').end()
+ function clearForm(modal, checked_field=null, hidden_field=null)
+  {
+     $(modal)
+         .find('form').trigger('reset').end()
 
-        .find("select").val(null).trigger('change').end()
+         .find("select").val(null).trigger('change').end()
 
-        .find("input:checkbox, input:radio").prop("checked", false).end()
+         .find("input:checkbox, input:radio").prop("checked", false).end()
 
-        .find(checked).prop('checked', true)
+         .find(checked_field).prop('checked', true)
 
-    hidden ? hidden.hide() : '';
- }
+     hidden_field ? hidden_field.hide() : ''
+  }
 
  /**
   * Remove all server side errors.
@@ -166,30 +167,13 @@ $.fn.emptyModal = function(fields, checked, hidden) {
      });
  }
 
-
- /**
-  * Change a hidden field visibility by using checkbox
-  *
-  * @param  {string} checked
-  * @param  {string} hidden
-  * @return {void}
-  */
- function toggleHiddenFieldWithCheckbox(checked, hidden)
- {
-     checked.on('change', function() {
-
-         this.checked ? hidden.hide().val('') : hidden.show();
-
-     });
- }
-
  /**
   * Determine how to create the password.
   *
   * @param  {string} field
   * @return {string}
   */
- function generatePassword(field, passwordLength=7)
+ function generatePassword(field, passwordLength=6)
  {
      var autoPassword = randomString(passwordLength);
      var manualPassword = $('input[type=password]').val();
@@ -275,11 +259,11 @@ $.fn.emptyModal = function(fields, checked, hidden) {
      {
          var formattedError = error.replace(/\./g , "-");
 
-         var field = $("."+formattedError);
-         var feedback = $("span."+formattedError).show();
+         // var field = $("."+formattedError);
+         // var feedback = $("span."+formattedError).show();
 
-         // var field = $("."+error)
-         // var feedback = $("span."+error).show()
+         var field = $("."+error)
+         var feedback = $("span."+error).show()
 
          // Attach server side validation
          displayServerError(field, feedback, errors[error][0]);
@@ -325,4 +309,55 @@ $.fn.emptyModal = function(fields, checked, hidden) {
 
      field.removeClass('is-invalid');
      feedback.text('');
+ }
+
+ /**
+  * Toggle hidden field by changing the radio field value.
+  *
+  * @param  {string} checked
+  * @param  {string} hidden
+  * @return {void}
+  */
+ function toggleHiddenFieldWithRadio(checked, hidden)
+ {
+     $('input:radio').on('change', function(){
+
+         var value = this.value;
+
+         value == checked.val() ? hidden.show() : hidden.hide().val('')
+     });
+ }
+
+
+ /**
+  * Change a hidden field visibility by using checkbox
+  *
+  * @param  {string} checked
+  * @param  {string} hidden
+  * @return {void}
+  */
+ function toggleHiddenFieldWithCheckbox(hidden)
+ {
+     $('input:checkbox').on('change', function() {
+
+         this.checked ? hidden.hide().val('') : hidden.show();
+
+     });
+ }
+
+ /**
+  * Get the user roles.
+  *
+  * @param  {array} roles
+  * @return {array}
+  */
+ function getUserRoles(roles)
+ {
+     var roleIds = []
+
+     $.each(roles, function(key, role) {
+         roleIds.push(role.id)
+     })
+
+     return roleIds
  }

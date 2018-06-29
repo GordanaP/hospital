@@ -4,13 +4,18 @@ namespace App;
 
 use App\Traits\User\HasAccount;
 use App\Traits\User\HasAttributes;
+use App\Traits\User\HasProfile;
 use App\Traits\User\HasRoles;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    use Notifiable, HasRoles, HasAccount, HasAttributes;
+    use Notifiable,
+        HasAccount,
+        HasAttributes,
+        HasProfile,
+        HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -38,14 +43,4 @@ class User extends Authenticatable
     protected $casts = [
         'is_verified' => 'boolean',
     ];
-
-    /**
-     * Get the profile that belongs to the user.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function profile()
-    {
-        return $this->hasOne(Profile::class);
-    }
 }

@@ -17,15 +17,24 @@ Auth::routes();
 
 
 /**
- * Users
+ * User
  */
 Route::prefix('admin')->namespace('User')->name('admin.')->group(function(){
+
     /**
      * Account
      */
-    // Route::get('/accounts/list', 'AccountController@list')->name('accounts.list');
     Route::resource('/accounts', 'AccountController', [
         'parameters' => ['accounts' => 'user'],
         'only' => ['index','store', 'show', 'update', 'destroy']
+    ]);
+
+    /**
+     * Profile
+     */
+    Route::get('profiles/{profile}/edit', 'ProfileController@edit')->name('profiles.edit');
+    Route::resource('/profiles', 'ProfileController', [
+        'parameters' => ['profiles' => 'user'],
+        'only' => ['show', 'update']
     ]);
 });

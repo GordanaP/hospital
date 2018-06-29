@@ -2,6 +2,8 @@
 
 namespace App\Traits\User;
 
+use App\Profile;
+
 trait HasAccount
 {
     /**
@@ -23,6 +25,7 @@ trait HasAccount
      */
     public static function createAccount($data)
     {
+        // Create account
         $user = new static;
 
         $user->name = $data['name'];
@@ -31,6 +34,10 @@ trait HasAccount
 
         $user->save();
 
-        return $user;
+        // Create profile
+        $user->assignProfile($data);
+
+        // Assign role
+        $user->assignRole($data['role_id']);
     }
 }

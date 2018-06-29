@@ -29,7 +29,7 @@ class Profile extends Model
      */
     public function user()
     {
-        return $thi->belongsTo(User::class);
+        return $this->belongsTo(User::class);
     }
 
     /**
@@ -40,6 +40,6 @@ class Profile extends Model
      */
     public function getFullNameAttribute($value)
     {
-        return $this->first_name . ' ' . $this->last_name;
+        return ucfirst($this->first_name) . ' ' . ucfirst($this->last_name);
     }
 }

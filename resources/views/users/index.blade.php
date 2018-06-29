@@ -18,6 +18,7 @@
 
 
     @include('users.modals._create')
+    @include('users.modals._edit')
 
 @endsection
 
@@ -42,23 +43,23 @@
 
         // ACCOUNT
         var accountsUrl = "{{ route('admin.accounts.index') }}"
-        var accountFields = ['role_id', 'title', 'first_name', 'last_name', 'email', 'password']
 
         // Create account
         var createAccountModal = $('#createAccountModal')
+        var createAccountFields = ['role_id', 'title', 'first_name', 'last_name', 'email', 'password']
         var focused = $('#first_name')
         var checked = $('#auto_password')
         var hidden = $("#hidden_password").hide()
 
         createAccountModal.setAutofocus(focused)
-        createAccountModal.emptyModal(accountFields, checked, hidden)
+        createAccountModal.emptyModal(createAccountFields, checked, hidden)
 
         // Create account
         $(document).on('click', '#createAccount', function() {
 
             createAccountModal.modal('show')
 
-            toggleHiddenFieldWithCheckbox(checked, hidden);
+            toggleHiddenFieldWithCheckbox(hidden);
 
         })
 
@@ -67,12 +68,16 @@
 
             var firstName = $('#first_name').val()
             var lastName = $('#last_name').val()
+            var title = $('#title').val()
+            var roleId = $("#role_id").val()
             var email = $('#email').val()
             var password = generatePassword(checked);
 
             var data = {
                 first_name: firstName,
                 last_name: lastName,
+                title: title,
+                role_id: roleId,
                 email : email,
                 password: password
             }
@@ -82,7 +87,7 @@
                 type: "POST",
                 data: data,
                 success: function(response) {
-
+                    console.log(response)
                     datatable.ajax.reload();
                     successResponse(createAccountModal, response.message);
                 },
@@ -91,6 +96,48 @@
                 }
             });
         });
+
+        // Edit account
+        var editAccountModal = $('#editAccountModal')
+        var editAccountFields = ['roleId', 'profileTitle', 'firstName', 'lastName', 'profileEmail', 'profilePassword']
+        var focusedField = $('#firstName')
+        var defaultChecked = $('#unchangedPassword')
+        var togglingChecked = $('#manualPassword')
+        var hiddenField = $("#hiddenPassword").hide()
+
+        editAccountModal.setAutofocus(focusedField)
+        editAccountModal.emptyModal(editAccountFields, defaultChecked, hiddenField)
+
+        $(document).on('click', '#editAccount', function(){
+
+            editAccountModal.modal('show')
+
+            toggleHiddenFieldWithRadio(togglingChecked, hiddenField);
+
+            var user = this.value
+            var showAccountUrl = accountsUrl + '/' + user
+
+            $('#updateAccount').val(user)
+
+            $.ajax({
+                url: showAccountUrl,
+                type: "GET",
+                success: function(response) {
+
+                    var user = response.user
+
+                    var roleIds = getUserRoles(user.roles)
+
+                    $('#firstName').val(user.profile.first_name)
+                    $('#lastName').val(user.profile.last_name)
+                    $("#profileTitle").val(user.profile.title);
+                    $("#roleId").val(roleIds).trigger("change");
+                    $('#profileEmail').val(user.email)
+                }
+            })
+        });
+
+        // Update account
 
     </script>
 @endsection

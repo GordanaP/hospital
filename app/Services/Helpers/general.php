@@ -14,15 +14,3 @@ function message($message, $type="success")
 
     return $response;
 }
-
-/**
- * Create the full name.
- *
- * @param string $first_name
- * @param string $last_name
- * @return  string
- */
-function getFullName($first_name, $last_name)
-{
-    return $first_name .' ' .$last_name;
-}

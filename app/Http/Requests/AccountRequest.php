@@ -38,6 +38,7 @@ class AccountRequest extends FormRequest
                         new AlphaNumSpace,
                     ],
                     'title' => 'required|in:'.ProfileTitle::getArray(),
+                    'role_id' => 'required|exists:roles,id',
                     'email' => 'required|string|email|max:100|unique:users,email',
                     'password' => 'required|string|min:6',
                 ];

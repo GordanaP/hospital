@@ -52,7 +52,7 @@ td.sorting_1:hover { background: #d2d9df !important }*/
  */
 input.select2-search__field {width: 100% !important; font-size:12px !important; font-family: "Roboto" sans-serif !important;}
 .select2-selection__rendered, .select2-results__option.select2-results__message { margin-left: 8px !important;}
-.select2-selection--multiple { border-radius: 0 !important; border: 1px solid #ccd0d2 !important;}
+.select2-selection--multiple { background: red; border-radius: 0 !important; border: 1px solid #ccd0d2 !important;}
 .select2-container--default.select2-container--focus .select2-selection--multiple {
   border-radius: 0;
   border-color: #CC1F1A !important;
@@ -75,3 +75,9 @@ input.select2-search__field {width: 100% !important; font-size:12px !important; 
 .btn-delete {background: none; border: none; color: #C25451}
 .btn-delete:hover {background: none; border: none; color: #c32232; font-weight: bold}
 */
+
+.invalid-select2 {
+  border: 1px solid #dc3545;
+}
+
+.role_id.form-control.req_place.select2-hidden-accessible.is-invalid { background-color: red}

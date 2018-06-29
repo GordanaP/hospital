@@ -40,7 +40,9 @@ trait HasRoles
      */
     public function assignRole($role)
     {
-        return $this->roles()->sync($role);
+
+        $this->roles()->sync($role);
+
     }
 
     /**
