@@ -16,7 +16,7 @@
                     <!-- First name -->
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="firstName" class="font-medium">First name <sup><i class="fa fa-asterisk text-red-dark fa-required"></i></sup></label>
+                            <label for="firstName" class="font-medium">First name <sup><i class="fa fa-asterisk text-red-dark fa-required"></i></sup> <i class="icon icon-question" data-toggle="tooltip" data-placement="right" title="max 30 chars; only letters, numbers & spaces"></i></label>
 
                             <input type="text" class="form-control admin-modal-input first_name" id="firstName" name="first_name" placeholder="Enter first name" />
 
@@ -27,7 +27,7 @@
                     <!-- Last name -->
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="lastName" class="font-medium">Last name <sup><i class="fa fa-asterisk text-red-dark fa-required"></i></sup></label>
+                            <label for="lastName" class="font-medium">Last name <sup><i class="fa fa-asterisk text-red-dark fa-required"></i></sup>  <i class="icon icon-question" data-toggle="tooltip" data-placement="right" title="max 30 chars; only letters, numbers & spaces"></i></label>
 
                             <input type="text" class="form-control admin-modal-input last_name" id="lastName" name="last_name" placeholder="Enter last name" />
 
@@ -88,7 +88,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="email" class="font-medium">E-Mail Address <sup><i class="fa fa-asterisk text-red-dark fa-required"></i></sup></label>
+                            <label for="email" class="font-medium">E-Mail Address <sup><i class="fa fa-asterisk text-red-dark fa-required"></i></sup> <i class="icon icon-question" data-toggle="tooltip" data-placement="right" title="max 100 chars; email format; unique"></i></label>
 
                             <input type="text" class="form-control email admin-modal-input"  id="profileEmail" name="email" placeholder="example@domain.com" />
 
@@ -102,7 +102,7 @@
 
                     <!-- Checkbox -->
                     <div class="col-md-6">
-                        <label for="createPassword" class="mb-0 font-medium">Password <sup><i class="fa fa-asterisk text-red-dark fa-required"></i></sup></label>
+                        <label for="createPassword" class="mb-0 font-medium">Password <sup><i class="fa fa-asterisk text-red-dark fa-required"></i></sup> <i class="icon icon-question" data-toggle="tooltip" data-placement="right" title="min 6 chars when creating manually"></i></label>
                         <div class="form-group mt-2" id="check-password">
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="createPassword" id="unchangedPassword" value="unchanged" checked />

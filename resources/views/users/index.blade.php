@@ -6,6 +6,19 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" />
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.1/css/responsive.dataTables.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" />
+
+    <style>
+        .tooltip-inner {
+            max-width: 200px;
+            padding: 3px 8px;
+            color: #000;
+            font-family: 'Open Sans';
+            font-weight: 300;
+            text-align: left;
+            background-color: #ffff99;
+            border-radius: 0;
+        }
+    </style>
 @endsection
 
 @section('content')
@@ -37,6 +50,8 @@
             placeholder: "Select role(s)",
             width: "100%",
         });
+
+        $('[data-toggle="tooltip"]').tooltip()
 
         // Datatable
         @include('users.tables._datatable')
@@ -101,7 +116,6 @@
 
         // Edit account
         var editAccountModal = $('#editAccountModal');
-        // var editAccountFields = ['roleId', 'profileTitle', 'firstName', 'lastName', 'profileEmail', 'profilePassword'];
         var focusedField = $('#firstName');
         var defaultChecked = $('#unchangedPassword');
         var togglingChecked = $('#manualPassword');
@@ -185,6 +199,8 @@
                 }
             });
         });
+
+
 
     </script>
 @endsection
