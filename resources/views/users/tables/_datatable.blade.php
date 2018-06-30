@@ -18,14 +18,14 @@ var datatable = table.DataTable({
         {
             data: 'name',
             render: function(data, type, row, meta) {
-                return '<a href="#" class="text-red-light">' + data +'</a>'
+                return '<a href="#" class="text-red-light" data-toggle="tooltip" data-placement="right" title="Click to see the profile">' + data +'</a>'
             }
         },
         { data: 'email' },
         {
             data: 'roles',
             render: function(data, type, row, meta) {
-                return roleNames(data).length > 0 ? roleNames(data) + ' <a href="#" data-user="' + row.id + '" data-name="' + row.name + '" id="editRoles">Revoke</a>' : '';
+                return roleNames(data).length > 0 ? (roleNames(data) + revokeLinkIfAdmin(data, row.id, row.name)) : '';
             }
         },
         {

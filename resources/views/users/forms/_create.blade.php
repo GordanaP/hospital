@@ -16,7 +16,7 @@
                     <!-- First name -->
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="first_name" class="font-medium">First name <sup><i class="fa fa-asterisk text-red-dark fa-required"></i></sup> <i class="icon icon-question" data-toggle="tooltip" data-placement="right" title="max 30 chars; only letters, numbers & spaces"></i></label>
+                            <label for="first_name" class="font-medium">First name <sup><i class="fa fa-asterisk text-red-dark fa-required"></i></sup> <i class="icon icon-question" data-toggle="tooltip" data-placement="top" title="max 30 chars; only letters, numbers & spaces"></i></label>
 
                             <input type="text" class="form-control admin-modal-input first_name" id="first_name" name="first_name" placeholder="Enter first name" />
 
@@ -27,7 +27,7 @@
                     <!-- Last name -->
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="last_name" class="font-medium">Last name <sup><i class="fa fa-asterisk text-red-dark fa-required"></i></sup> <i class="icon icon-question" data-toggle="tooltip" data-placement="right" title="max 30 chars; only letters, numbers & spaces"></i></label>
+                            <label for="last_name" class="font-medium">Last name <sup><i class="fa fa-asterisk text-red-dark fa-required"></i></sup> <i class="icon icon-question" data-toggle="tooltip" data-placement="top" title="max 30 chars; only letters, numbers & spaces"></i></label>
 
                             <input type="text" class="form-control admin-modal-input last_name" id="last_name" name="last_name" placeholder="Enter last name" />
 
@@ -80,7 +80,7 @@
         <div class="row mt-5">
             <div class="col-md-4 mb-4">
                 <div class="uppercase tracking-wide font-medium">Access Credentials</div>
-                <div class="text-muted text-xs">The credentails will be sent to the user. The email address requires user verification.</div>
+                <div class="text-muted text-xs">The new credentails will be sent to the user. The email address requires user verification.</div>
             </div>
 
             <div class="col-md-8">
@@ -89,7 +89,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="email" class="font-medium">E-Mail Address <sup><i class="fa fa-asterisk text-red-dark fa-required"></i></sup> <i class="icon icon-question" data-toggle="tooltip" data-placement="right" title="max 100 chars; email format; unique"></i></label>
+                            <label for="email" class="font-medium">E-Mail Address <sup><i class="fa fa-asterisk text-red-dark fa-required"></i></sup> <i class="icon icon-question" data-toggle="tooltip" data-placement="top" title="max 100 chars; email format; unique"></i></label>
 
                             <input type="text" class="form-control email admin-modal-input"  id="email" name="email" placeholder="example@domain.com" />
 
@@ -103,7 +103,7 @@
 
                     <!-- Checkbox -->
                     <div class="col-md-6">
-                        <label for="create_password" class="mb-0 font-medium">Password <sup><i class="fa fa-asterisk text-red-dark fa-required"></i></sup> <i class="icon icon-question" data-toggle="tooltip" data-placement="right" title="min 6 chars when creating manually"></i></label>
+                        <label for="create_password" class="mb-0 font-medium">Password <sup><i class="fa fa-asterisk text-red-dark fa-required"></i></sup> <i class="icon icon-question" data-toggle="tooltip" data-placement="top" title="min 6 chars when creating manually"></i></label>
                         <div class="form-check mt-2">
                             <input class="form-check-input admin-modal-input" type="checkbox" name="create-password" id="auto_password" value="auto"  checked />
                             <label class="form-check-label" for="auto_password">

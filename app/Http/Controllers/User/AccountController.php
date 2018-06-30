@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Events\Auth\AccountCreatedByAdmin;
+use App\Events\Auth\AccountUpdatedByAdmin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AccountRequest;
-use App\Profile;
 use App\Role;
 use App\User;
-use Illuminate\Http\Request;
 
 class AccountController extends Controller
 {
@@ -30,16 +30,6 @@ class AccountController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -48,6 +38,8 @@ class AccountController extends Controller
     public function store(AccountRequest $request)
     {
         $user = User::createAccount($request);
+
+        event(new AccountCreatedByAdmin($user, $request->password));
 
         return message('New account has been created');
     }
@@ -90,6 +82,14 @@ class AccountController extends Controller
     {
         if (request()->ajax())
         {
+            $newEmail = $request->email;
+            $newPassword = $request->password;
+
+            if ($user->hasChangedAccessCredentials($newEmail, $newPassword))
+            {
+                event(new AccountUpdatedByAdmin($newEmail, $newPassword));
+            }
+
             $user->updateAccount($request);
 
             return message('The account has been updated');

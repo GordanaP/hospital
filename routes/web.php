@@ -15,7 +15,6 @@ Route::namespace('Page')->group(function(){
  */
 Auth::routes();
 
-
 /**
  * User
  */
@@ -24,7 +23,7 @@ Route::prefix('admin')->namespace('User')->name('admin.')->group(function(){
     /**
      * Account
      */
-    Route::resource('/accounts', 'AccountController', [
+    Route::resource('accounts', 'AccountController', [
         'parameters' => ['accounts' => 'user'],
         'only' => ['index','store', 'show', 'update', 'destroy']
     ]);
@@ -38,3 +37,8 @@ Route::prefix('admin')->namespace('User')->name('admin.')->group(function(){
         'only' => ['show', 'update']
     ]);
 });
+
+/**
+ * ActivationToken
+ */
+Route::get('accounts/activate/{activationToken}','User\ActivationTokenController@show')->name('token.show');

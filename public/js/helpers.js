@@ -29,12 +29,49 @@ function roleNames(roles)
 {
     var tempArray = [];
 
-    $.each(roles, function(key, value) {
+    $.each(roles, function(key, role) {
 
-        tempArray.push(value.name);
+        tempArray.push(role.name);
     })
 
     return tempArray;
+}
+
+/**
+ * Determine if the user has admin privileges.
+ *
+ * @param  {array}  roles
+ * @return {Boolean}
+ */
+function hasAdminPrivileges(roles)
+{
+    var tempVar;
+
+    $.each(roles, function(key, role) {
+         tempVar = role.name == 'admin' || role.name == 'superadmin';
+    });
+
+    return tempVar;
+}
+
+/**
+ * A link to revoke the admin or superadmin role.
+ *
+ * @param  {array} roles
+ * @param  {int} userId
+ * @param  {string} userName
+ * @return {string}
+ */
+function revokeLinkIfAdmin(roles, userId, userName)
+{
+    if (hasAdminPrivileges(roles))
+    {
+        return ' <a href="#" data-user="' + userId + '" data-name="' + userName + '" id="editRoles">Revoke</a>';
+    }
+    else
+    {
+        return '';
+    }
 }
 
 /**
@@ -173,7 +210,7 @@ $.fn.setAutofocus = function(field)
   * @param  {string} field
   * @return {string}
   */
- function generatePassword(field, passwordLength=6)
+ function generatePassword(field, passwordLength=7)
  {
      var autoPassword = randomString(passwordLength);
      var manualPassword = $('input[type=password]').val();
@@ -383,3 +420,4 @@ $.fn.setAutofocus = function(field)
 
      return password;
  }
+

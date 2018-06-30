@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Observers\UserObserver;
 use App\Traits\User\HasAccount;
 use App\Traits\User\HasAttributes;
 use App\Traits\User\HasProfile;
@@ -43,4 +44,27 @@ class User extends Authenticatable
     protected $casts = [
         'is_verified' => 'boolean',
     ];
+
+    /**
+     * Bootstrap the application User service.
+     *
+     * @return void
+     */
+    public static function boot()
+    {
+        parent::boot();
+
+        static::observe(UserObserver::class);
+    }
+
+    /**
+     * Get the token that belongs to the user.
+     *
+     * @return  \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function activationToken()
+    {
+        return $this->hasOne(ActivationToken::class);
+    }
+
 }

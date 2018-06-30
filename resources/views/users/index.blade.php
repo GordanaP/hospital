@@ -13,7 +13,7 @@
             padding: 3px 8px;
             color: #000;
             font-family: 'Open Sans';
-            font-weight: 300;
+            font-weight: 400;
             text-align: left;
             background-color: #ffff99;
             border-radius: 0;
@@ -51,10 +51,10 @@
             width: "100%",
         });
 
-        $('[data-toggle="tooltip"]').tooltip()
+        $('[data-toggle="tooltip"]').tooltip();
 
         // Datatable
-        @include('users.tables._datatable')
+        @include('users.tables._datatable');
 
         // ACCOUNT
         var accountsUrl = "{{ route('admin.accounts.index') }}";
@@ -76,8 +76,7 @@
             createAccountModal.modal('show');
 
             toggleHiddenFieldWithCheckbox(hidden);
-
-        })
+        });
 
         // Store account
         $(document).on('click', '#storeAccount', function() {
@@ -150,7 +149,7 @@
                     $("#roleId").val(roleIds).trigger("change");
                     $('#profileEmail').val(user.email);
                 }
-            })
+            });
         });
 
         // Update account
@@ -189,7 +188,7 @@
 
                     // $('#myAccount').load(location.href + ' #myAccount');
                     // $('#displayUserName').load(location.href + ' #displayUserName');
-
+                    console.log(response);
                     datatable ? datatable.ajax.reload() : '';
 
                     successResponse(editAccountModal, response.message);
@@ -199,8 +198,6 @@
                 }
             });
         });
-
-
 
     </script>
 @endsection
