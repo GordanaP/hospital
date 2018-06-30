@@ -88,7 +88,12 @@ class AccountController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        if (request()->ajax())
+        {
+            $user->updateAccount($request);
+
+            return message('The account has been updated');
+        }
     }
 
     /**

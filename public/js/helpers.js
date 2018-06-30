@@ -320,7 +320,7 @@ $.fn.setAutofocus = function(field)
   */
  function toggleHiddenFieldWithRadio(checked, hidden)
  {
-     $('input:radio').on('change', function(){
+     $('input:radio').on('change', function() {
 
          var value = this.value;
 
@@ -360,4 +360,26 @@ $.fn.setAutofocus = function(field)
      })
 
      return roleIds
+ }
+
+ /**
+  * Change password
+  *
+  * @return {string}
+  */
+ function changePassword(checkedRadio, checkedManual, checkedAuto, profilePassword)
+ {
+     var auto_password = randomString(6)
+     var manual_password = profilePassword
+
+     if(checkedRadio == checkedManual)
+     {
+         var password = manual_password
+     }
+     else if(checkedRadio == checkedAuto)
+     {
+         var password = auto_password
+     }
+
+     return password;
  }

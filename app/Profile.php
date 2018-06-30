@@ -31,15 +31,4 @@ class Profile extends Model
     {
         return $this->belongsTo(User::class);
     }
-
-    /**
-     * Set the profile full name.
-     *
-     * @param  string  $value
-     * @return string
-     */
-    public function getFullNameAttribute($value)
-    {
-        return ucfirst($this->first_name) . ' ' . ucfirst($this->last_name);
-    }
 }

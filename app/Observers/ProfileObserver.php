@@ -14,6 +14,8 @@ class ProfileObserver
      */
     public function creating(Profile $profile)
     {
-        $profile->slug = Profile::uniqueNameSlug($profile->full_name);
+        $name = getFullName($profile->first_name, $profile->last_name);
+
+        $profile->slug = Profile::uniqueNameSlug($name);
     }
 }

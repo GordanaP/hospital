@@ -131,7 +131,7 @@
                     <div class="col-md-6">
                         <div class="form-group" id="hiddenPassword">
                             <label for=""></label>
-                            <input type="password" class="form-control password admin-modal-input" id="profielePassword" name="profilePassword" placeholder="Give password to the user" />
+                            <input type="password" class="form-control password admin-modal-input" id="profilePassword" name="profilePassword" placeholder="Give password to the user" />
 
                             <span class="invalid-feedback password"></span>
                         </div>
