@@ -18,7 +18,7 @@
                         <div class="form-group">
                             <label for="firstName" class="font-medium">First name <sup><i class="fa fa-asterisk text-red-dark fa-required"></i></sup></label>
 
-                            <input type="text" class="form-control admin-modal-input first_name" id="firstName" name="firstName" placeholder="Enter first name" />
+                            <input type="text" class="form-control admin-modal-input first_name" id="firstName" name="first_name" placeholder="Enter first name" />
 
                             <span class="invalid-feedback first_name"></span>
                         </div>
@@ -29,7 +29,7 @@
                         <div class="form-group">
                             <label for="lastName" class="font-medium">Last name <sup><i class="fa fa-asterisk text-red-dark fa-required"></i></sup></label>
 
-                            <input type="text" class="form-control admin-modal-input last_name" id="lastName" name="lastName" placeholder="Enter last name" />
+                            <input type="text" class="form-control admin-modal-input last_name" id="lastName" name="last_name" placeholder="Enter last name" />
 
                             <span class="invalid-feedback last_name"></span>
                         </div>
@@ -42,7 +42,7 @@
                         <div class="form-group">
                             <label for="title" class="font-medium">Title <sup><i class="fa fa-asterisk text-red-dark fa-required"></i></sup></label>
 
-                            <select name="profileTitle" id="profileTitle" class="form-control title admin-modal-input">
+                            <select name="title" id="profileTitle" class="form-control title admin-modal-input">
                                 <option value="" >Select a title</option>
 
                                 @foreach (ProfileTitle::all() as $title => $description)
@@ -60,7 +60,7 @@
                     <div class="col-md-6">
                         <div class="form-group select-box">
                             <label for="roleId" class="font-medium">Role  <sup><i class="fa fa-asterisk text-red-dark fa-required"></i></sup></label>
-                            <select class="role_id form-control req_place" name="roleId[]" id="roleId" multiple="multiple">
+                            <select class="role_id form-control req_place" name="role_id[]" id="roleId" multiple="multiple">
                                 @foreach ($roles as $role)
                                     <option value="{{ $role->id }}">
                                         {{ ucfirst($role->name) }}
@@ -90,7 +90,7 @@
                         <div class="form-group">
                             <label for="email" class="font-medium">E-Mail Address <sup><i class="fa fa-asterisk text-red-dark fa-required"></i></sup></label>
 
-                            <input type="text" class="form-control email admin-modal-input"  id="profileEmail" name="profileEmail" placeholder="example@domain.com" />
+                            <input type="text" class="form-control email admin-modal-input"  id="profileEmail" name="email" placeholder="example@domain.com" />
 
                             <span class="invalid-feedback email"></span>
                         </div>
@@ -131,7 +131,7 @@
                     <div class="col-md-6">
                         <div class="form-group" id="hiddenPassword">
                             <label for=""></label>
-                            <input type="password" class="form-control password admin-modal-input" id="profilePassword" name="profilePassword" placeholder="Give password to the user" />
+                            <input type="password" class="form-control password admin-modal-input" id="profilePassword" name="password" placeholder="Give password to the user" />
 
                             <span class="invalid-feedback password"></span>
                         </div>

@@ -25,13 +25,15 @@ class AccountRequest extends FormRequest
      */
     public function rules()
     {
+        $userId = optional($this->user)->id ?: \Auth::id();
+
         switch ($this->method())
         {
             case 'POST':
                 return [
                     'first_name' => [
                         'required','string', 'max:30',
-                        new AlphaNumSpace,
+                        new AlphaNumSpace(),
                     ],
                     'last_name' => [
                         'required','string','max:30',
@@ -41,6 +43,29 @@ class AccountRequest extends FormRequest
                     'role_id' => 'required|exists:roles,id',
                     'email' => 'required|string|email|max:100|unique:users,email',
                     'password' => 'required|string|min:6',
+                ];
+                break;
+
+            case 'PUT':
+            case 'PATCH':
+                return [
+                    'first_name' => [
+                        'sometimes','required','string','max:30', //the field is present only on admin update (sometimes)
+                        new AlphaNumSpace(),
+                    ],
+                    'last_name' =>  [
+                        'sometimes','required','string','max:30',
+                        new AlphaNumSpace(),
+                    ],
+                    'title' => 'sometimes|required|in:'.ProfileTitle::getArray(),
+                    'role_id' => 'required|exists:roles,id',
+                    'email' => 'required|string|email|max:100|unique:users,email,'.$userId,
+                    'password' => [
+                        'nullable',
+                        'required_if:create_password,manual',
+                        'string', 'min:6',
+                        'confirmed'
+                    ],
                 ];
                 break;
         }

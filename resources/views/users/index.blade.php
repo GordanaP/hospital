@@ -43,16 +43,17 @@
 
         // ACCOUNT
         var accountsUrl = "{{ route('admin.accounts.index') }}";
+        /*the names for create & edit form must be the same for emptying the errosrs on modal close*/
+        var accountFields = ['first_name',  'last_name', 'title', 'role_id', 'email', 'password'];
 
         // Create account
         var createAccountModal = $('#createAccountModal');
-        var createAccountFields = ['role_id', 'title', 'first_name', 'last_name', 'email', 'password'];
         var focused = $('#first_name');
         var checked = $('#auto_password');
         var hidden = $("#hidden_password").hide();
 
         createAccountModal.setAutofocus(focused);
-        createAccountModal.emptyModal(createAccountFields, checked, hidden);
+        createAccountModal.emptyModal(accountFields, checked, hidden);
 
         // Create account
         $(document).on('click', '#createAccount', function() {
@@ -100,14 +101,14 @@
 
         // Edit account
         var editAccountModal = $('#editAccountModal');
-        var editAccountFields = ['roleId', 'profileTitle', 'firstName', 'lastName', 'profileEmail', 'profilePassword'];
+        // var editAccountFields = ['roleId', 'profileTitle', 'firstName', 'lastName', 'profileEmail', 'profilePassword'];
         var focusedField = $('#firstName');
         var defaultChecked = $('#unchangedPassword');
         var togglingChecked = $('#manualPassword');
         var hiddenField = $("#hiddenPassword").hide();
 
         editAccountModal.setAutofocus(focusedField);
-        editAccountModal.emptyModal(editAccountFields, defaultChecked, hiddenField);
+        editAccountModal.emptyModal(accountFields, defaultChecked, hiddenField);
 
         $(document).on('click', '#editAccount', function(){
 
