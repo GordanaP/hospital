@@ -4,3 +4,6 @@
 .mb-24 { margin-bottom: 24px }
 .meta { font-weight: 300; font-style: italic; font-family: Lora,'Times New Roman',serif;}
 .fa-required { font-size: 8px }
+.tooltip-inner { max-width: 200px; padding: 3px 8px; color: #000; font-family: 'Open Sans'; font-weight: 400;
+    text-align: left;background-color: #ffff99;border-radius: 0;}
+.is-hidden { display:none !important; }

@@ -14,8 +14,7 @@
 .dataTable tr td:first-child {text-align: center;}
 .dataTable tr td:last-child {text-align: center;}
 .pagination li.page-item a.page-link{border: none}
-/*.pagination li.page-item.active a.page-link {font-weight: bold; color: #777; background: #fff; border: 1px solid #E3342F}*/
-.pagination li.page-item.active a.page-link {background: #EF5753;}
+.pagination li.page-item.active a.page-link {background: #EF5753; border-radius: 0}
 
 
 /*.dataTables_wrapper {font-size: 13px; font-family: "Roboto"; color: #777}*/

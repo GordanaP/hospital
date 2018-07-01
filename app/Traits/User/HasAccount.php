@@ -96,6 +96,17 @@ trait HasAccount
     }
 
     /**
+     * Delete the account.
+     *
+     * @param  string $path
+     * @return void
+     */
+    public function deleteAccount()
+    {
+        $this->delete();
+    }
+
+    /**
      * The user has changed their access credentials.
      *
      * @param  string  $newEmail

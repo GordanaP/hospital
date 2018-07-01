@@ -6,19 +6,6 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" />
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.1/css/responsive.dataTables.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" />
-
-    <style>
-        .tooltip-inner {
-            max-width: 200px;
-            padding: 3px 8px;
-            color: #000;
-            font-family: 'Open Sans';
-            font-weight: 400;
-            text-align: left;
-            background-color: #ffff99;
-            border-radius: 0;
-        }
-    </style>
 @endsection
 
 @section('content')
@@ -195,6 +182,34 @@
                 },
                 error: function(response) {
                     errorResponse(editAccountModal, jsonErrors(response));
+                }
+            });
+        });
+
+        $(document).on('click', '#deleteAccount', function(){
+
+            var user = this.value;
+            var deleteAccountUrl = accountsUrl + '/' + user
+
+            swal({
+                title: 'Are you sure you want to delete the account?',
+                text: 'Once the account has been deleted you will not be able to recover it!',
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Delete',
+                cancelButtonText: 'Cancel',
+            }).then((result) => {
+                if(result.value == true)
+                {
+                    $.ajax({
+                        url: deleteAccountUrl,
+                        type: 'DELETE',
+                        success: function(response)
+                        {
+                            datatable ? datatable.ajax.reload() : ''
+                            successResponse(response.message)
+                        }
+                    })
                 }
             });
         });

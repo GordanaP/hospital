@@ -62,16 +62,9 @@ function hasAdminPrivileges(roles)
  * @param  {string} userName
  * @return {string}
  */
-function revokeLinkIfAdmin(roles, userId, userName)
+function revokeLinkIfAdmin(roles, html)
 {
-    if (hasAdminPrivileges(roles))
-    {
-        return ' <a href="#" data-user="' + userId + '" data-name="' + userName + '" id="editRoles">Revoke</a>';
-    }
-    else
-    {
-        return '';
-    }
+    return hasAdminPrivileges(roles) ? html : ''
 }
 
 /**
@@ -127,6 +120,7 @@ function datatableIndexColumn(dataTable, table)
 {
     dataTable.on( 'draw.dt', function () {
 
+        // Display numbers on every page
         var PageInfo = table.DataTable().page.info();
 
         dataTable.column(0, { page: 'current' }).nodes().each( function (cell, i) {
@@ -421,3 +415,66 @@ $.fn.setAutofocus = function(field)
      return password;
  }
 
+/**
+ * Remove navigation if only one page
+ *
+ * @param  {object} datatable
+ * @return {void}
+ */
+function removeNavigationIfOnlyOnePage (datatable) {
+
+    datatable.on( 'draw.dt', function () {
+
+        var pageInfo = datatable.page.info();
+        var currentPage = pageInfo.page;
+        var totalPages = pageInfo.pages;
+        var totalRecords = pageInfo.recordsTotal;
+
+        totalPages == 1 ? $('#accountsTable_previous, #accountsTable_next').remove() : '';
+
+        currentPage == 0 ? $('#accountsTable_previous').remove() : '';
+
+        currentPage == totalPages - 1 ? $('#accountsTable_next').remove() : '';
+
+        totalRecords == 0 ? $('#accountsTable_next').remove() : '';
+
+    });
+}
+
+/**
+ * Alert the user on deletion
+ *
+ * @param  {string} name
+ * @param  {string} url
+ * @return void
+ */
+function swalDelete(url, name, datatable, field)
+{
+    swal({
+        title: 'Are you sure?',
+        text: 'You will not be able to recover the '+ name + '!',
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Delete',
+        cancelButtonText: 'Cancel'
+    }).then((result) => {
+        if(result.value == true)
+        {
+            $.ajax({
+                url : url,
+                type : "DELETE",
+                success : function(response) {
+
+                    datatable ? datatable.ajax.reload() : ''
+                    field ? $(field).load(location.href + ' ' + field) : ''
+
+                    userNotification(response.message)
+                },
+                error: function(response) {
+                    userNotification("This action is unauthorized", "error")
+                    modal.modal("hide")
+                }
+            })
+        }
+    })
+}

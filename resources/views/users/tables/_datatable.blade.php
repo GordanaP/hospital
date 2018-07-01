@@ -5,7 +5,7 @@ var datatable = table.DataTable({
         "url": accountsUrl,
         "type": "GET"
     },
-    "pagingType": "full_numbers",
+    "pagingType": "simple_numbers",
     "deferRender": true, // Increase the speed of the table loading
     "columns": [
         {
@@ -25,7 +25,8 @@ var datatable = table.DataTable({
         {
             data: 'roles',
             render: function(data, type, row, meta) {
-                return roleNames(data).length > 0 ? (roleNames(data) + revokeLinkIfAdmin(data, row.id, row.name)) : '';
+                var html = ' <a href="#" data-user="' + row.id + '" data-name="' + row.name + '" id="editRoles"><span class="text-red-light">Revoke</span></a>';
+                return roleNames(data).length > 0 ? (roleNames(data) + revokeLinkIfAdmin(data, html)) : '';
             }
         },
         {
@@ -73,9 +74,20 @@ var datatable = table.DataTable({
         { responsivePriority: 2, targets: 1 },
         { responsivePriority: 3, targets: 2 }
     ],
+    language: {
+        infoEmpty: "No entries to show",
+        paginate: {
+            previous: "<<",
+            next: ">>",
+        }
+    }
 });
 
 // The first col counters the rows
 datatableIndexColumn(datatable, table)
 
+// Remove nav links if only one page
+removeNavigationIfOnlyOnePage(datatable)
+
+// Add style to datatable search & select fields
 $("#accountsTable_length select, #accountsTable_filter input").addClass('admin-modal-input')
