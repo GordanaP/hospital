@@ -140,7 +140,7 @@
         });
 
         // Update account
-        $(document).on('click', '#updateAccount', function(){
+        $(document).on('click', '#updateAccount', function() {
 
             var user = this.value;
             var updateAccountUrl = accountsUrl + '/' + user;
@@ -186,7 +186,7 @@
             });
         });
 
-        $(document).on('click', '#deleteAccount', function(){
+        $(document).on('click', '#deleteAccount', function() {
 
             var user = this.value;
             var deleteAccountUrl = accountsUrl + '/' + user
@@ -210,6 +210,37 @@
                             successResponse(response.message)
                         }
                     })
+                }
+            });
+        });
+
+        // Unselect an option
+        $('.role_id').on('select2:select', function (e) {
+
+            var select = $(this);
+            var selected = e.target.value;
+            var triggerValue = 1;
+            var valueToUnselect = 2;
+
+            unselectOption(select, selected, triggerValue, valueToUnselect);
+        });
+
+        var rolesUrl = "{{ route('admin.roles.index') }}"
+
+        $('.role_id').on('change', function(e){
+
+            var roleId = e.target.value;
+            var url = rolesUrl + '/' + roleId
+
+            $.ajax({
+                url : url,
+                type: "GET",
+                data: {
+                    role_id: roleId
+                },
+                success: function(response)
+                {
+                    console.log(response)
                 }
             });
         });

@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Rules\AlphaNumSpace;
+use App\Rules\ExcludeOneAnother;
 use App\Services\Utilities\ProfileTitle;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -40,7 +41,10 @@ class AccountRequest extends FormRequest
                         new AlphaNumSpace,
                     ],
                     'title' => 'required|in:'.ProfileTitle::getArray(),
-                    'role_id' => 'required|exists:roles,id',
+                    'role_id' => [
+                        'required', 'array', 'distinct', 'exists:roles,id', 'max:2',
+                        new ExcludeOneAnother($this->role_id)
+                    ],
                     'email' => 'required|string|email|max:100|unique:users,email',
                     'password' => 'required|string|min:6',
                 ];

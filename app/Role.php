@@ -23,4 +23,14 @@ class Role extends Model
     {
         return $this->belongsToMany(User::class);
     }
+
+    /**
+     * Get the titles that belong to the role.
+     *
+     * @return  \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function titles()
+    {
+        return $this->hasMany(Title::class);
+    }
 }

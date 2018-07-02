@@ -478,3 +478,11 @@ function swalDelete(url, name, datatable, field)
         }
     })
 }
+
+function unselectOption(select, selected, triggerValue, valueToUnselect)
+{
+  if (selected == triggerValue)
+  {
+      $("select option[value=" + valueToUnselect +"]").prop("selected", false).parent().trigger("change");
+  }
+}

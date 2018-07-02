@@ -9,7 +9,7 @@ class DatabaseSeeder extends Seeder
      *
      * @var array
      */
-    protected $tables = [ 'users', 'roles', 'role_user', 'profiles',];
+    protected $tables = [ 'users', 'roles', 'role_user', 'profiles', 'titles'];
 
     /**
      * Seed the application's database.
@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
         $this->call(RolesTableSeeder::class);
         $this->call(RoleUserTableSeeder::class);
         $this->call(ProfilesTableSeeder::class);
+        $this->call(TitlesTableSeeder::class);
     }
 
     /**

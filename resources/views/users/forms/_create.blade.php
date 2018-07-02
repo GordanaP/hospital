@@ -36,6 +36,24 @@
                     </div>
                 </div>
 
+                <!-- Role -->
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group select-box">
+                            <label for="role_id" class="font-medium">Role  <sup><i class="fa fa-asterisk text-red-dark fa-required"></i></sup></label>
+                            <select class="role_id form-control req_place" name="role_id[]" id="role_id" multiple="multiple">
+                                @foreach ($roles as $role)
+                                    <option value="{{ $role->id }}">
+                                        {{ ucfirst($role->name) }}
+                                    </option>
+                                @endforeach
+                            </select>
+
+                            <span class="invalid-feedback role_id"></span>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Title -->
                 <div class="row">
                     <div class="col-md-6">
@@ -51,24 +69,6 @@
                             </select>
 
                             <span class="invalid-feedback title"></span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Role -->
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group select-box">
-                            <label for="role_id" class="font-medium">Role  <sup><i class="fa fa-asterisk text-red-dark fa-required"></i></sup></label>
-                            <select class="role_id form-control req_place" name="role_id[]" id="role_id" multiple="multiple">
-                                @foreach ($roles as $role)
-                                    <option value="{{ $role->id }}">
-                                        {{ ucfirst($role->name) }}
-                                    </option>
-                                @endforeach
-                            </select>
-
-                            <span class="invalid-feedback role_id"></span>
                         </div>
                     </div>
                 </div>

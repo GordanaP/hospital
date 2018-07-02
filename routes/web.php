@@ -36,6 +36,11 @@ Route::prefix('admin')->namespace('User')->name('admin.')->group(function(){
         'parameters' => ['profiles' => 'user'],
         'only' => ['show', 'update']
     ]);
+
+    /**
+     * Role
+     */
+    Route::resource('roles', 'RoleController');
 });
 
 /**
