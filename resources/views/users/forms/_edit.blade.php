@@ -36,26 +36,7 @@
                     </div>
                 </div>
 
-                <!-- Title -->
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="title" class="font-medium">Title <sup><i class="fa fa-asterisk text-red-dark fa-required"></i></sup></label>
-
-                            <select name="title" id="profileTitle" class="form-control title admin-modal-input">
-                                <option value="" >Select a title</option>
-
-                                @foreach (ProfileTitle::all() as $title => $description)
-                                    <option value="{{ $title }}">{{ $description }}</option>
-                                @endforeach
-                            </select>
-
-                            <span class="invalid-feedback title"></span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Role -->
+                <!-- Role: Select2 multiple -->
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group select-box">
@@ -72,6 +53,24 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Title -->
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="title" class="font-medium">Title <sup><i class="fa fa-asterisk text-red-dark fa-required"></i></sup></label>
+
+                            <select name="title" id="profileTitle" class="form-control title admin-modal-input">
+                                <option value="" >Select a title</option>
+
+                                <!-- Append a role-dependent dropdown list -->
+                            </select>
+
+                            <span class="invalid-feedback title"></span>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
 

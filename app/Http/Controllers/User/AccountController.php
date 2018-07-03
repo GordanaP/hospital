@@ -55,7 +55,7 @@ class AccountController extends Controller
         if(request()->ajax()) {
 
             return response([
-                'user' => $user->load('profile','roles')
+                'user' => $user->load('profile','roles', 'roles.titles'),
             ]);
         }
     }

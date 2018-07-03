@@ -63,9 +63,7 @@
                             <select name="title" id="title" class="form-control title admin-modal-input">
                                 <option value="" >Select a title</option>
 
-                                @foreach (ProfileTitle::all() as $title => $description)
-                                    <option value="{{ $title }}">{{ $description }}</option>
-                                @endforeach
+                                <!-- Append role-dependent dropdown list -->
                             </select>
 
                             <span class="invalid-feedback title"></span>

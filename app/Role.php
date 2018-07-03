@@ -7,6 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Role extends Model
 {
+    /**
+     * Bootstrap the application Role service.
+     *
+     * @return void
+     */
+
     protected static function boot()
     {
         parent::boot();
@@ -24,11 +30,6 @@ class Role extends Model
         return $this->belongsToMany(User::class);
     }
 
-    /**
-     * Get the titles that belong to the role.
-     *
-     * @return  \Illuminate\Database\Eloquent\Relations\HasMany
-     */
     public function titles()
     {
         return $this->hasMany(Title::class);

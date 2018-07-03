@@ -13,11 +13,9 @@ class RoleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return response([
-            'message' => 'sent'
-        ]);
+        //
     }
 
     /**
@@ -49,7 +47,12 @@ class RoleController extends Controller
      */
     public function show(Role $role)
     {
-        return $role;
+        if (request()->ajax()) {
+
+            return response([
+                'role' => $role->load('titles')
+            ]);
+        }
     }
 
     /**

@@ -40,7 +40,7 @@ class AccountRequest extends FormRequest
                         'required','string','max:30',
                         new AlphaNumSpace,
                     ],
-                    'title' => 'required|in:'.ProfileTitle::getArray(),
+                    'title' => 'required|exists:titles,id',
                     'role_id' => [
                         'required', 'array', 'distinct', 'exists:roles,id', 'max:2',
                         new ExcludeOneAnother($this->role_id)
@@ -61,7 +61,7 @@ class AccountRequest extends FormRequest
                         'sometimes','required','string','max:30',
                         new AlphaNumSpace(),
                     ],
-                    'title' => 'sometimes|required|in:'.ProfileTitle::getArray(),
+                    'title' => 'sometimes|required|exists:titles,id',
                     'role_id' => 'required|exists:roles,id',
                     'email' => 'required|string|email|max:100|unique:users,email,'.$userId,
                     'password' => [

@@ -1,28 +1,3 @@
-@extends('layouts.admin')
-
-@section('title', ' | Admin | Users')
-
-@section('links')
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" />
-    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.1/css/responsive.dataTables.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" />
-@endsection
-
-@section('content')
-
-    @admcontent
-        @slot('card')
-            @include('users.tables._htmltable')
-        @endslot
-    @endadmcontent
-
-    @include('users.modals._create')
-    @include('users.modals._edit')
-
-@endsection
-
-@section('scripts')
-
     <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.1/js/dataTables.responsive.min.js"></script>
@@ -30,67 +5,18 @@
 
     <script>
 
-        var rolesUrl = "{{ route('admin.roles.index') }}"
-        var select = $('.role_id');
-
-        // Select2 multiple
-        $('select.role_id').select2({
-            placeholder:'Select roles',
+        // Initialize select.2
+        $('select.role_id')
+        .select2({
+            placeholder: {
+                id: '-1', // the value of the option
+                text: 'Select roles',
+            },
             maximumSelectionLength: 2,
             width: "100%",
             allowClear: true
         });
 
-
-        // Select2 multiple
-        $('.role_id').on('select2:select', function (e) {
-
-            // Unselect an option
-            var select = $(this)
-            var selected = e.target.value;
-            var triggerValue = 1;
-            var valueToUnselect = 2;
-            var lastSelected = e.params.data.id;
-            console.log(lastSelected)
-            unselectOption(select, selected, triggerValue, valueToUnselect);
-
-            // Create a dependant dropdown list
-            var roleId = $(this).val();
-            var itemToRemove = 3;
-
-            roleId = $.grep(roleId, function( val, index ) {
-              return val < itemToRemove;
-            });
-
-            var showRoleUrl = rolesUrl + '/' + roleId
-
-            $.ajax({
-                url: showRoleUrl,
-                type: 'GET',
-                success: function(response)
-                {
-                    var titles = response.role ? response.role.titles : ''
-                    var html;
-
-                    $.each(titles, function(index, title) {
-                        html += '<option value="'+ title.id +'">'+ title.name+'</option>'
-                    });
-
-                    lastSelected == 3 ? '' : $('select#title, select#profileTitle').empty().append('<option>Select a title</option>').append(html)
-                }
-            });
-        });
-
-        // Remove titles on unselect particular roles
-        $('.role_id').on('select2:unselect', function (e) {
-
-            var unselected = e.params.data.id;
-
-            // Do not remove role-depenent titles if unselect admin
-            unselected == 3 ? '' : $('select#title, select#profileTitle').empty().append('<option>Select a title</option>')
-        });
-
-        // Form tooltps
         $('[data-toggle="tooltip"]').tooltip();
 
         // Datatable
@@ -179,38 +105,17 @@
                 type: "GET",
                 success: function(response) {
 
-                    console.log(response)
-
                     var user = response.user;
-                    var profile = response.user.profile;
-                    var roles = response.user.roles;
-                    var roleIds = getUserRoles(roles);
-                    var itemToRemove = 3;
 
-                    roleId = $.grep(roleIds, function( val, index ) {
-                      return val < itemToRemove;
-                    });
+                    var roleIds = getUserRoles(user.roles);
 
-                    var html = '';
-
-                    $.each(roles, function(index, role) {
-                         if (role.id == roleId) {
-                            $.each(role.titles, function(index, title) {
-                                 html += '<option value="'+ title.id +'">'+ title.name+'</option>'
-                            });
-                         }
-                    });
-
-                    $('select#profileTitle').empty().append('<option>Select a title</option>').append(html)
-
-                    $('#firstName').val(profile.first_name);
-                    $('#lastName').val(profile.last_name);
-                    $("#profileTitle").val(profile.title);
+                    $('#firstName').val(user.profile.first_name);
+                    $('#lastName').val(user.profile.last_name);
+                    $("#profileTitle").val(user.profile.title);
                     $("#roleId").val(roleIds).trigger("change");
                     $('#profileEmail').val(user.email);
                 }
             });
-
         });
 
         // Update account
@@ -288,6 +193,73 @@
             });
         });
 
-    </script>
+        var rolesUrl = "{{ route('admin.roles.index') }}"
+        var select = $('.role_id');
+        var old_values = [];
 
-@endsection
+        // Select2 multiple
+        $('.role_id').on('select2:select', function (e) {
+
+            var values = [];
+
+            // copy all option values from selected
+            $(event.currentTarget).find("option:selected").each(function(i, selected){
+                values[i] = $(selected).text();
+            });
+
+            // doing a diff of old_values gives the new values selected
+            var last = $(values).not(old_values).get();
+
+            // update old_values for future use
+            old_values = values;
+
+            // output values (all current values selected)
+            console.log("selected values: ", values);
+
+            // output last added value
+              console.log("last added: ", last);
+
+            // Unselect an option
+            var selected = e.target.value;
+            var triggerValue = 1;
+            var valueToUnselect = 2;
+
+            unselectOption(select, selected, triggerValue, valueToUnselect);
+
+            // Create a dependant dropdown list
+            var roleId = $(this).val();
+            var itemToRemove = 3;
+
+            roleId = $.grep(roleId, function( val, index ) {
+              return val < itemToRemove;
+            });
+
+            var showRoleUrl = rolesUrl + '/' + roleId
+
+            $.ajax({
+                url: showRoleUrl,
+                type: 'GET',
+                success: function(response)
+                {
+                    var titles = response.role ? response.role.titles : ''
+                    var html;
+
+                    $.each(titles, function(index, title) {
+                        html += '<option value="'+ title.id +'">'+ title.name+'</option>'
+                    });
+
+                    $('select#title').empty().append('<option>Select a title</option>').append(html)
+                }
+            });
+        });
+
+        // Remove titles on unselect particular roles
+        $('.role_id').on('select2:unselect', function (e) {
+
+            var unselected = e.params.data.element.value
+
+            // Do net remove role-depenent titles if unselect admin
+            unselected == 3 ? '' : $('select#title').empty().append('<option>Select a title</option>')
+        });
+
+    </script>
