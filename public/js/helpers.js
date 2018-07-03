@@ -182,6 +182,8 @@ $.fn.setAutofocus = function(field)
          .find(checked_field).prop('checked', true)
 
      hidden_field ? hidden_field.hide() : ''
+
+
   }
 
  /**
@@ -479,10 +481,79 @@ function swalDelete(url, name, datatable, field)
     })
 }
 
-function unselectOption(select, selected, triggerValue, valueToUnselect)
+// function unselectOption(select, selected, triggerValue, valueToUnselect)
+// {
+//   if (selected == triggerValue)
+//   {
+//       $("select option[value=" + valueToUnselect +"]").prop("selected", false).parent().trigger("change");
+//   }
+// }
+
+/**
+ * Replace one selected option with another one
+ *
+ * @param  {int} selectedRole
+ * @param  {int} selectedValue
+ * @param  {int} lastSelected
+ * @param  {int} lastValue
+ * @return {void}
+ */
+function replaceSelectedOption(selectedRole, selectedValue, lastSelected, lastValue)
 {
-  if (selected == triggerValue)
-  {
-      $("select option[value=" + valueToUnselect +"]").prop("selected", false).parent().trigger("change");
-  }
+    if(selectedRole == selectedValue && lastSelected == lastValue) {
+        $("select option[value=" + selectedRole +"]").prop("selected", false).parent().trigger("change");
+    }
+
+    if(selectedRole == selectedValue && lastSelected == selectedValue) {
+        $("select option[value="+ lastValue +"]").prop("selected", false).parent().trigger("change");
+    }
+}
+
+/**
+ * Get selected role
+ *
+ * @param  {array} roleIds
+ * @param  {int} roleToRemove
+ * @return {array}
+ */
+function getRoleId(roleIds, roleToRemove)
+{
+    return $.grep(roleIds, function( val, index ) {
+      return val < roleToRemove;
+    });
+}
+
+/**
+ * Create a role dependant titles dropdown list
+ *
+ * @param  {array} titles
+ * @return {string}        [html]
+ */
+function getTitlesOptions(titles)
+{
+   var html = '';
+
+   $.each(titles, function(index, title) {
+      html += '<option value="'+ title.id +'">'+ title.name+'</option>'
+   });
+
+   return html;
+}
+
+/**
+ * Append title options to select box.
+ *
+ * @param  {string} selectBox
+ * @param  {int} lastSelected
+ * @param  {int} roleToRemove
+ * @param  {array} options
+ * @return {void}
+ */
+function appendTitleOptions(lastSelected, roleToRemove, options=null)
+{
+   var placeholder = '<option>Select a title</option>';
+
+   lastSelected == roleToRemove
+     ? ''
+     : $('select#title, select#profileTitle').empty().append(placeholder).append(options)
 }

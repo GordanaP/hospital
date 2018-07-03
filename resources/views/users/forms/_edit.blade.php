@@ -61,9 +61,10 @@
                             <label for="title" class="font-medium">Title <sup><i class="fa fa-asterisk text-red-dark fa-required"></i></sup></label>
 
                             <select name="title" id="profileTitle" class="form-control title admin-modal-input">
-                                <option value="" >Select a title</option>
+                                <option value="">Select a title</option>
 
                                 <!-- Append a role-dependent dropdown list -->
+
                             </select>
 
                             <span class="invalid-feedback title"></span>
