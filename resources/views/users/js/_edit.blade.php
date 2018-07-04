@@ -36,7 +36,7 @@ $(document).on('click', '#editAccount', function(){
                      options =  getTitlesOptions(role.titles)
                  }
             });
-
+console.log(response)
             $('select#profileTitle').empty().append('<option>Select a title</option>').append(options)
 
             $('#firstName').val(profile.first_name);

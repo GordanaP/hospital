@@ -2,20 +2,22 @@
 
 namespace App\Rules;
 
+use App\Role;
+use App\Title;
 use Illuminate\Contracts\Validation\Rule;
 
-class ExcludeOneAnother implements Rule
+class BelongsToRole implements Rule
 {
-    protected $role;
+    protected $role_ids;
 
     /**
      * Create a new rule instance.
      *
      * @return void
      */
-    public function __construct($role)
+    public function __construct($role_ids)
     {
-        $this->role = $role;
+        $this->role_ids = $role_ids;
     }
 
     /**
@@ -27,7 +29,10 @@ class ExcludeOneAnother implements Rule
      */
     public function passes($attribute, $value)
     {
-        return $this->role !== ["1", "2"];
+        $title = Title::find($value);
+        $role = Role::find($title->role_id);
+
+        return in_array($role->id, $this->role_ids);
     }
 
     /**
@@ -37,7 +42,6 @@ class ExcludeOneAnother implements Rule
      */
     public function message()
     {
-        return 'The selected values exclude one another.';
-
+        return 'The title does not belong to the role.';
     }
 }

@@ -8,7 +8,7 @@ selectRoles.select2({
 // Handle event:select - create a role-dependant titles dropdown list
 selectRoles.on('select2:select', function (e) {
 
-    // Unselect an option
+    // Unselect an option and replace with new selected
     var selectedRole = e.target.value;
     var lastSelected = e.params.data.id;
     var doctorRole = 1;

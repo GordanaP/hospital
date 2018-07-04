@@ -3,7 +3,8 @@
 namespace App\Http\Requests;
 
 use App\Rules\AlphaNumSpace;
-use App\Rules\ExcludeOneAnother;
+use App\Rules\BelongsToRole;
+use App\Rules\DoNotExcludeEachOther;
 use App\Services\Utilities\ProfileTitle;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -38,12 +39,15 @@ class AccountRequest extends FormRequest
                     ],
                     'last_name' => [
                         'required','string','max:30',
-                        new AlphaNumSpace,
+                        new AlphaNumSpace(),
                     ],
-                    'title' => 'required|exists:titles,id',
                     'role_id' => [
-                        'required', 'array', 'distinct', 'exists:roles,id', 'max:2',
-                        new ExcludeOneAnother($this->role_id)
+                        'required', 'array', 'distinct', 'max:2', 'exists:roles,id',
+                        new DoNotExcludeEachOther()
+                    ],
+                    'title' => [
+                        'required','exists:titles,id',
+                        new BelongsToRole($this->role_id)
                     ],
                     'email' => 'required|string|email|max:100|unique:users,email',
                     'password' => 'required|string|min:6',
@@ -61,14 +65,19 @@ class AccountRequest extends FormRequest
                         'sometimes','required','string','max:30',
                         new AlphaNumSpace(),
                     ],
-                    'title' => 'sometimes|required|exists:titles,id',
-                    'role_id' => 'required|exists:roles,id',
+                    'role_id' => [
+                        'required', 'array', 'distinct', 'max:2', 'exists:roles,id',
+                        new DoNotExcludeEachOther()
+                    ],
+                    'title' => [
+                        'required','exists:titles,id',
+                        new BelongsToRole($this->role_id)
+                    ],
                     'email' => 'required|string|email|max:100|unique:users,email,'.$userId,
                     'password' => [
                         'nullable',
                         'required_if:create_password,manual',
-                        'string', 'min:6',
-                        'confirmed'
+                        'string', 'min:6', 'confirmed'
                     ],
                 ];
                 break;

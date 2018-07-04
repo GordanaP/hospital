@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Observers\ProfileObserver;
+use App\Title;
 use App\Traits\Profile\HasSlug;
 use Illuminate\Database\Eloquent\Model;
 

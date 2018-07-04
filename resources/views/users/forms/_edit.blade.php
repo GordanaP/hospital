@@ -40,7 +40,8 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group select-box">
-                            <label for="roleId" class="font-medium">Role  <sup><i class="fa fa-asterisk text-red-dark fa-required"></i></sup></label>
+                            <label for="roleId" class="font-medium">Role  <sup><i class="fa fa-asterisk text-red-dark fa-required"></i></sup> <i class="icon icon-question" data-toggle="tooltip" data-placement="top" title="max 2; must not exclude each other"></i></label>
+
                             <select class="role_id form-control req_place" name="role_id[]" id="roleId" multiple="multiple">
                                 @foreach ($roles as $role)
                                     <option value="{{ $role->id }}">
@@ -58,7 +59,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="title" class="font-medium">Title <sup><i class="fa fa-asterisk text-red-dark fa-required"></i></sup></label>
+                            <label for="title" class="font-medium">Title <sup><i class="fa fa-asterisk text-red-dark fa-required"></i></sup> <i class="icon icon-question" data-toggle="tooltip" data-placement="top" title="max 1"></i></label>
 
                             <select name="title" id="profileTitle" class="form-control title admin-modal-input">
                                 <option value="">Select a title</option>
