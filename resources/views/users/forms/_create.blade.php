@@ -1,11 +1,11 @@
 <form id="createAccountForm">
     <div class="modal-body">
-        <p class="italic text-sm mb-4">
+        <p class="italic text-sm">
             Fields marked with <sup><i class="fa fa-asterisk text-red-dark"></i></sup> are required.
         </p>
 
-        <div class="row mb-5">
-            <div class="col-md-4 mb-4">
+        <div class="row">
+            <div class="col-md-4">
                 <div class="uppercase tracking-wide font-medium">Profile Information</div>
                 <div class="text-muted text-xs">This information is visible to the public.</div>
             </div>
@@ -62,9 +62,9 @@
                             <label for="title" class="font-medium">Title <sup><i class="fa fa-asterisk text-red-dark fa-required"></i></sup> <i class="icon icon-question" data-toggle="tooltip" data-placement="top" title="max 1"></i></label>
 
                             <select name="title" id="title" class="form-control title admin-modal-input">
-                                <option value="" >Select a title</option>
+                                <option value="0">Select a title</option>
 
-                                <!-- Append role-dependent dropdown list -->
+                                <!-- Append the role-dependent dropdown list -->
                             </select>
 
                             <span class="invalid-feedback title"></span>
@@ -74,10 +74,10 @@
             </div>
         </div>
 
-        <hr class="mt-0 mb-0">
+        <hr class="mt-4 mb-4">
 
-        <div class="row mt-5">
-            <div class="col-md-4 mb-4">
+        <div class="row mt-4">
+            <div class="col-md-4">
                 <div class="uppercase tracking-wide font-medium">Access Credentials</div>
                 <div class="text-muted text-xs">The new credentails will be sent to the user. The email address requires user verification.</div>
             </div>
@@ -127,7 +127,7 @@
         </div>
     </div>
 
-    <div class="modal-footer">
+    <div class="modal-footer mt-2">
         <button type="button" class="btn bg-none admin-modal-button" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-success btn-account admin-modal-button" id="storeAccount">Save</button>
     </div>

@@ -31,9 +31,7 @@
 
         var rolesUrl = "{{ route('admin.roles.index') }}";
         var accountsUrl = "{{ route('admin.accounts.index') }}";
-        var accountFields = ['first_name',  'last_name', 'title', 'role_id', 'email', 'password']; // same names for both forms required for emptyng errors!
-        var selectRoles = $('select.role_id');
-        var roleToRemove = 3; // admin role has no titles!
+        var accountFields = ['first_name', 'last_name', 'title', 'role_id', 'email', 'password']; // same names for both forms required for emptyng errors!
 
         // Select2 multiple
         @include('users.js._select2')

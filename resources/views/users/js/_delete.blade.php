@@ -19,7 +19,7 @@ $(document).on('click', '#deleteAccount', function() {
                 success: function(response)
                 {
                     datatable ? datatable.ajax.reload() : ''
-                    successResponse(response.message)
+                    successResponse(createAccountModal, response.message)
                 }
             })
         }

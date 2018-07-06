@@ -17,7 +17,10 @@ class BelongsToRole implements Rule
      */
     public function __construct($role_ids)
     {
-        $this->role_ids = $role_ids;
+        if($role_ids)
+        {
+            $this->role_ids = $role_ids;
+        }
     }
 
     /**
@@ -29,10 +32,17 @@ class BelongsToRole implements Rule
      */
     public function passes($attribute, $value)
     {
-        $title = Title::find($value);
-        $role = Role::find($title->role_id);
+        if( $value && $this->role_ids ) {
 
-        return in_array($role->id, $this->role_ids);
+            $title = Title::find($value);
+
+            if($title) {
+
+                $role = Role::find($title->role_id);
+
+                return $role->id == $this->role_ids[0];
+            }
+        }
     }
 
     /**
@@ -42,6 +52,6 @@ class BelongsToRole implements Rule
      */
     public function message()
     {
-        return 'The title does not belong to the role.';
+        return 'The selected field is invalid.';
     }
 }

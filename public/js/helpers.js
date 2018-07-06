@@ -481,31 +481,22 @@ function swalDelete(url, name, datatable, field)
     })
 }
 
-// function unselectOption(select, selected, triggerValue, valueToUnselect)
-// {
-//   if (selected == triggerValue)
-//   {
-//       $("select option[value=" + valueToUnselect +"]").prop("selected", false).parent().trigger("change");
-//   }
-// }
-
 /**
  * Replace one selected option with another one
  *
- * @param  {int} selectedRole
- * @param  {int} selectedValue
+ * @param  {int} selected
  * @param  {int} lastSelected
- * @param  {int} lastValue
+ * @param  {array} roles
  * @return {void}
  */
-function replaceSelectedOption(selectedRole, selectedValue, lastSelected, lastValue)
+function replaceSelectedOption(selected, lastSelected, roles)
 {
-    if(selectedRole == selectedValue && lastSelected == lastValue) {
-        $("select option[value=" + selectedRole +"]").prop("selected", false).parent().trigger("change");
+    if(selected == roles['doctor'] && lastSelected == roles['nurse']) {
+        $("select option[value=" + selected +"]").prop("selected", false).parent().trigger("change");
     }
 
-    if(selectedRole == selectedValue && lastSelected == selectedValue) {
-        $("select option[value="+ lastValue +"]").prop("selected", false).parent().trigger("change");
+    if(selected == roles['doctor'] && lastSelected == roles['doctor']) {
+        $("select option[value="+ roles['nurse'] +"]").prop("selected", false).parent().trigger("change");
     }
 }
 
@@ -516,7 +507,7 @@ function replaceSelectedOption(selectedRole, selectedValue, lastSelected, lastVa
  * @param  {int} roleToRemove
  * @return {array}
  */
-function getRoleId(roleIds, roleToRemove)
+function getFirstRoleId(roleIds, roleToRemove)
 {
     return $.grep(roleIds, function( val, index ) {
       return val < roleToRemove;
@@ -524,17 +515,40 @@ function getRoleId(roleIds, roleToRemove)
 }
 
 /**
- * Create a role dependant titles dropdown list
+ * Get role id.
  *
- * @param  {array} titles
+ * @param  {int} selected
+ * @param  {int} lastSelected
+ * @param  {array} allSelected
+ * @param  {arry} roles
+ * @return {int}
+ */
+function getRoleId(selected, lastSelected, allSelected, roles)
+{
+    if (lastSelected == roles['doctor'] || lastSelected == roles['nurse'])
+    {
+        var roleId = lastSelected;
+    }
+    else if(allSelected == roles['doctor'],roles['admin'] || allSelected == roles['nurse'],roles['admin'] || selected == roles['admin'])
+    {
+        var roleId = selected;
+    }
+
+    return roleId;
+}
+
+/**
+ * Create a dropdown html
+ *
+ * @param  {array} values
  * @return {string}        [html]
  */
-function getTitlesOptions(titles)
+function getOptions(values)
 {
    var html = '';
 
-   $.each(titles, function(index, title) {
-      html += '<option value="'+ title.id +'">'+ title.name+'</option>'
+   $.each(values, function(index, value) {
+      html += '<option value="'+ value.id +'">'+ value.name+'</option>'
    });
 
    return html;
@@ -543,17 +557,13 @@ function getTitlesOptions(titles)
 /**
  * Append title options to select box.
  *
- * @param  {string} selectBox
- * @param  {int} lastSelected
- * @param  {int} roleToRemove
+ * @param  {string} selectCreate
+ * @param  {string} selectEdit
+ * @param  {string} Placeholder
  * @param  {array} options
  * @return {void}
  */
-function appendTitleOptions(lastSelected, roleToRemove, options=null)
+function appendOptions(selectCreate, selectEdit, placeholder, options=null)
 {
-   var placeholder = '<option>Select a title</option>';
-
-   lastSelected == roleToRemove
-     ? ''
-     : $('select#title, select#profileTitle').empty().append(placeholder).append(options)
+   selectCreate.add(selectEdit).empty().append(placeholder).append(options)
 }

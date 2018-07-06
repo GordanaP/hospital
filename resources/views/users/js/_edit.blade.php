@@ -4,6 +4,7 @@ var focusedField = $('#firstName');
 var defaultChecked = $('#unchangedPassword');
 var togglingChecked = $('#manualPassword');
 var hiddenField = $("#hiddenPassword").hide();
+var roleToRemove = 3;
 
 editAccountModal.setAutofocus(focusedField);
 editAccountModal.emptyModal(accountFields, defaultChecked, hiddenField);
@@ -28,16 +29,16 @@ $(document).on('click', '#editAccount', function(){
             var profile = response.user.profile;
             var roles = response.user.roles;
             var roleIds = getUserRoles(roles);
-            var roleId = getRoleId(roleIds, roleToRemove)
+            var roleId = getFirstRoleId(roleIds, roleToRemove)
             var options;
 
-            $.each(roles, function(index, role) {
+            $.each(roles, function(i, role) {
                  if (role.id == roleId) {
-                     options =  getTitlesOptions(role.titles)
+                     options =  getOptions(role.titles)
                  }
             });
-console.log(response)
-            $('select#profileTitle').empty().append('<option>Select a title</option>').append(options)
+
+            selectProfileTitle.empty().append(placeholder).append(options);
 
             $('#firstName').val(profile.first_name);
             $('#lastName').val(profile.last_name);

@@ -15,7 +15,11 @@ class RoleController extends Controller
      */
     public function index(Request $request)
     {
-        //
+        if(request()->ajax()){
+            return response([
+                'roles' => Role::all()
+            ]);
+        };
     }
 
     /**

@@ -46,8 +46,8 @@ class AccountRequest extends FormRequest
                         new DoNotExcludeEachOther()
                     ],
                     'title' => [
-                        'required','exists:titles,id',
-                        new BelongsToRole($this->role_id)
+                        'exists:titles,id',
+                        new BelongsToRole($this->role_id),
                     ],
                     'email' => 'required|string|email|max:100|unique:users,email',
                     'password' => 'required|string|min:6',
@@ -70,8 +70,8 @@ class AccountRequest extends FormRequest
                         new DoNotExcludeEachOther()
                     ],
                     'title' => [
-                        'required','exists:titles,id',
-                        new BelongsToRole($this->role_id)
+                        'exists:titles,id',
+                        new BelongsToRole($this->role_id),
                     ],
                     'email' => 'required|string|email|max:100|unique:users,email,'.$userId,
                     'password' => [

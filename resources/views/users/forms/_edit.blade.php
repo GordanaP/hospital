@@ -1,11 +1,11 @@
 <form id="editAccountForm">
     <div class="modal-body">
-        <p class="italic text-sm mb-4">
+        <p class="italic text-sm">
             Fields marked with <sup><i class="fa fa-asterisk text-red-dark"></i></sup> are required.
         </p>
 
-        <div class="row mb-5">
-            <div class="col-md-4 mb-4">
+        <div class="row">
+            <div class="col-md-4">
                 <div class="uppercase tracking-wide font-medium">Profile Information</div>
                 <div class="text-muted text-xs">This information is visible to the public.</div>
             </div>
@@ -76,10 +76,10 @@
             </div>
         </div>
 
-        <hr class="mt-0 mb-0">
+        <hr class="mt-4 mb-4">
 
-        <div class="row mt-5">
-            <div class="col-md-4 mb-4">
+        <div class="row">
+            <div class="col-md-4">
                 <div class="uppercase tracking-wide font-medium">Access Credentials</div>
                 <div class="text-muted text-xs">The new credentails will be sent to the user on each change.</div>
             </div>
@@ -104,7 +104,7 @@
                     <!-- Checkbox -->
                     <div class="col-md-6">
                         <label for="createPassword" class="mb-0 font-medium">Password <sup><i class="fa fa-asterisk text-red-dark fa-required"></i></sup> <i class="icon icon-question" data-toggle="tooltip" data-placement="top" title="min 6 chars when creating manually"></i></label>
-                        <div class="form-group mt-2" id="check-password">
+                        <div class="form-group mt-2 mb-0" id="check-password">
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="createPassword" id="unchangedPassword" value="unchanged" checked />
                                 <label class="form-check-label" for="unchangedPassword">
@@ -143,7 +143,7 @@
         </div>
     </div>
 
-    <div class="modal-footer">
+    <div class="modal-footer mt-2">
         <button type="button" class="btn bg-none admin-modal-button" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-success btn-account admin-modal-button" id="updateAccount">Save</button>
     </div>
